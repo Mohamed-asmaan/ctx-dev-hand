@@ -1,0 +1,11 @@
+{
+  "name": "legacy-node-app",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": "14"
+  },
+  "dependencies": {
+    "pg": "7.18.2"
+  }
+}

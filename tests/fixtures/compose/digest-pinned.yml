@@ -1,0 +1,5 @@
+services:
+  db:
+    image: postgres@sha256:abc123def456abc123def456abc123def456abc123def456abc123def456abc123
+    ports:
+      - "5432:5432"

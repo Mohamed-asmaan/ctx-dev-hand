@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "scannedAt": "2026-08-29T21:36:38.571Z",
+  "language": "java",
+  "declaredRuntimeVersion": "8",
+  "buildTool": "maven",
+  "manifestPath": "pom.xml",
+  "parentResolved": true,
+  "dependencies": [
+    {
+      "groupId": "org.postgresql",
+      "artifactId": "postgresql",
+      "version": "42.2.5",
+      "scope": "compile",
+      "versionRaw": "42.2.5"
+    },
+    {
+      "groupId": "javax.xml.bind",
+      "artifactId": "jaxb-api",
+      "version": "2.3.0",
+      "scope": "compile",
+      "versionRaw": "2.3.0"
+    }
+  ],
+  "platform": {
+    "database": {
+      "engine": "postgres",
+      "version": "9.6",
+      "declaredIn": "docker-compose.yml:3",
+      "confidence": "declared",
+      "allFound": [
+        {
+          "engine": "postgres",
+          "version": "9.6",
+          "declaredIn": "docker-compose.yml:3",
+          "service": "db"
+        }
+      ]
+    }
+  },
+  "importMap": {
+    "org.postgresql": [
+      "src/db/Connection.java:13",
+      "src/db/Pool.java:8"
+    ],
+    "javax.xml.bind": [
+      "src/api/XmlMapper.java:5",
+      "src/api/XmlMapper.java:6",
+      "src/api/XmlMapper.java:7"
+    ]
+  }
+}

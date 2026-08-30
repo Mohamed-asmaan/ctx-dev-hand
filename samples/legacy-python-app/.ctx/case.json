@@ -1,0 +1,165 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-08-30T09:20:09.196Z",
+  "capturedBy": "ctx capture (original-owner)",
+  "language": "python",
+  "declaredRuntimeVersion": "2.7",
+  "buildTool": "pip",
+  "decisions": [
+    {
+      "id": "scan:runtime",
+      "fact": "python is version 2.7",
+      "confirmedBy": "scan",
+      "at": "2026-08-30T09:20:09.196Z"
+    },
+    {
+      "id": "scan:build",
+      "fact": "Build tool is pip",
+      "confirmedBy": "scan",
+      "at": "2026-08-30T09:20:09.196Z"
+    },
+    {
+      "id": "scan:dep:django:django",
+      "fact": "django:django is 1.11.29",
+      "confirmedBy": "scan",
+      "at": "2026-08-30T09:20:09.196Z"
+    },
+    {
+      "id": "scan:dep:psycopg2:psycopg2",
+      "fact": "psycopg2:psycopg2 is 2.7.7",
+      "confirmedBy": "scan",
+      "at": "2026-08-30T09:20:09.196Z"
+    },
+    {
+      "id": "scan:database",
+      "fact": "Database is postgres 9.6",
+      "confirmedBy": "scan",
+      "at": "2026-08-30T09:20:09.196Z"
+    },
+    {
+      "id": "human:decision:original-owner-us-tax-is-10-percent",
+      "fact": "Original owner: US tax is 10 percent",
+      "confirmedBy": "original-owner",
+      "at": "2026-08-30T09:20:09.196Z"
+    }
+  ],
+  "invariants": [
+    {
+      "id": "human:edge:empty-cart-returns-zero",
+      "description": "Empty cart returns zero",
+      "kind": "edge"
+    },
+    {
+      "id": "human:rule:secret-key-in-this-sample-is-the-placeho",
+      "description": "SECRET_KEY in this sample is the placeholder legacy",
+      "kind": "rule"
+    }
+  ],
+  "baseline": {
+    "declaredRuntimeVersion": "2.7",
+    "language": "python",
+    "buildTool": "pip",
+    "manifestPath": "requirements.txt",
+    "dependencies": [
+      {
+        "groupId": "django",
+        "artifactId": "django",
+        "version": "1.11.29"
+      },
+      {
+        "groupId": "psycopg2",
+        "artifactId": "psycopg2",
+        "version": "2.7.7"
+      }
+    ],
+    "files": [
+      {
+        "path": "app/db.py",
+        "sha256": "abf24d44491c531d47c28751a7577c61d73d7f333fc77a00aa934f200f105798"
+      },
+      {
+        "path": "app/settings.py",
+        "sha256": "1bf11cedea37d3c050ef855fdfcfa7e3c99680252702ca91cb4b885465c0af61"
+      },
+      {
+        "path": "docker-compose.yml",
+        "sha256": "10a873f346d5405a9835ce7ac6a63d58c9e89c9dbfe0cf1b320ced088dfd8859"
+      },
+      {
+        "path": "requirements.txt",
+        "sha256": "7def0cdf3658739e9ceebc57bd36f81847899b920d22ed325f08a4ea8c982efc"
+      }
+    ],
+    "tests": [
+      {
+        "path": "tests/test_settings.py",
+        "sha256": "161f3a5efbc3f42956501372c6c24b73d73a45e6c8405478b5cfbc10629d0b0c"
+      }
+    ]
+  },
+  "lastVerify": {
+    "at": "2026-08-30T09:20:19.044Z",
+    "verdict": "same",
+    "summary": "Tracked files, libraries, and runtime still match the case file. 2 recorded edge(s) still need a person to confirm.",
+    "diffs": [
+      {
+        "kind": "runtime",
+        "id": "runtime",
+        "status": "same",
+        "before": "2.7",
+        "after": "2.7"
+      },
+      {
+        "kind": "dependency",
+        "id": "django:django",
+        "status": "same",
+        "before": "1.11.29",
+        "after": "1.11.29"
+      },
+      {
+        "kind": "dependency",
+        "id": "psycopg2:psycopg2",
+        "status": "same",
+        "before": "2.7.7",
+        "after": "2.7.7"
+      },
+      {
+        "kind": "file",
+        "id": "app/db.py",
+        "status": "same"
+      },
+      {
+        "kind": "file",
+        "id": "app/settings.py",
+        "status": "same"
+      },
+      {
+        "kind": "file",
+        "id": "docker-compose.yml",
+        "status": "same"
+      },
+      {
+        "kind": "file",
+        "id": "requirements.txt",
+        "status": "same"
+      },
+      {
+        "kind": "test",
+        "id": "tests/test_settings.py",
+        "status": "same"
+      },
+      {
+        "kind": "invariant",
+        "id": "human:edge:empty-cart-returns-zero",
+        "status": "untested",
+        "note": "Person must still confirm (edge): Empty cart returns zero"
+      },
+      {
+        "kind": "invariant",
+        "id": "human:rule:secret-key-in-this-sample-is-the-placeho",
+        "status": "untested",
+        "note": "Person must still confirm (rule): SECRET_KEY in this sample is the placeholder legacy"
+      }
+    ]
+  }
+}

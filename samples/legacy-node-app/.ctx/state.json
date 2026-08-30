@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "scannedAt": "2026-08-29T21:36:39.113Z",
+  "language": "node",
+  "declaredRuntimeVersion": "14",
+  "buildTool": "npm",
+  "manifestPath": "package.json",
+  "parentResolved": true,
+  "dependencies": [
+    {
+      "groupId": "pg",
+      "artifactId": "pg",
+      "version": "7.18.2",
+      "scope": "runtime",
+      "versionRaw": "7.18.2"
+    }
+  ],
+  "platform": {
+    "database": {
+      "engine": "postgres",
+      "version": "9.6",
+      "declaredIn": "docker-compose.yml:3",
+      "confidence": "declared",
+      "allFound": [
+        {
+          "engine": "postgres",
+          "version": "9.6",
+          "declaredIn": "docker-compose.yml:3",
+          "service": "db"
+        }
+      ]
+    }
+  },
+  "importMap": {
+    "pg": [
+      "src/db.js:1",
+      "src/query.js:1"
+    ]
+  }
+}

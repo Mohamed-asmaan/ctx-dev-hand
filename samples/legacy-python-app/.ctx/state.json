@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "scannedAt": "2026-08-29T21:36:39.564Z",
+  "language": "python",
+  "declaredRuntimeVersion": "2.7",
+  "buildTool": "pip",
+  "manifestPath": "requirements.txt",
+  "parentResolved": true,
+  "dependencies": [
+    {
+      "groupId": "django",
+      "artifactId": "django",
+      "version": "1.11.29",
+      "scope": "runtime",
+      "versionRaw": "1.11.29"
+    },
+    {
+      "groupId": "psycopg2",
+      "artifactId": "psycopg2",
+      "version": "2.7.7",
+      "scope": "runtime",
+      "versionRaw": "2.7.7"
+    }
+  ],
+  "platform": {
+    "database": {
+      "engine": "postgres",
+      "version": "9.6",
+      "declaredIn": "docker-compose.yml:3",
+      "confidence": "declared",
+      "allFound": [
+        {
+          "engine": "postgres",
+          "version": "9.6",
+          "declaredIn": "docker-compose.yml:3",
+          "service": "db"
+        }
+      ]
+    }
+  },
+  "importMap": {
+    "django": [
+      "app/settings.py:1"
+    ],
+    "psycopg2": [
+      "app/db.py:1"
+    ]
+  }
+}

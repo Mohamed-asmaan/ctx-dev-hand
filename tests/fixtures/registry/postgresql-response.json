@@ -1,0 +1,12 @@
+{
+  "response": {
+    "numFound": 20,
+    "docs": [
+      { "g": "org.postgresql", "a": "postgresql", "v": "42.7.7", "timestamp": 1700000000000 },
+      { "g": "org.postgresql", "a": "postgresql", "v": "42.7.6", "timestamp": 1699000000000 },
+      { "g": "org.postgresql", "a": "postgresql", "v": "42.7.5", "timestamp": 1698000000000 },
+      { "g": "org.postgresql", "a": "postgresql", "v": "42.3.0", "timestamp": 1640000000000 },
+      { "g": "org.postgresql", "a": "postgresql", "v": "42.2.5", "timestamp": 1580000000000 }
+    ]
+  }
+}

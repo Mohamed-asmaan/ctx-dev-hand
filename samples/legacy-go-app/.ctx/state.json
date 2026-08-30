@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "scannedAt": "2026-08-29T21:36:40.055Z",
+  "language": "go",
+  "declaredRuntimeVersion": "1.16",
+  "buildTool": "go",
+  "manifestPath": "go.mod",
+  "parentResolved": true,
+  "dependencies": [
+    {
+      "groupId": "github.com/gin-gonic/gin",
+      "artifactId": "gin",
+      "version": "1.7.7",
+      "scope": "runtime",
+      "versionRaw": "v1.7.7"
+    },
+    {
+      "groupId": "github.com/lib/pq",
+      "artifactId": "pq",
+      "version": "1.9.0",
+      "scope": "runtime",
+      "versionRaw": "v1.9.0"
+    }
+  ],
+  "platform": {
+    "database": {
+      "engine": "postgres",
+      "version": "9.6",
+      "declaredIn": "docker-compose.yml:3",
+      "confidence": "declared",
+      "allFound": [
+        {
+          "engine": "postgres",
+          "version": "9.6",
+          "declaredIn": "docker-compose.yml:3",
+          "service": "db"
+        }
+      ]
+    }
+  },
+  "importMap": {
+    "github.com/gin-gonic/gin": [
+      "main.go:6",
+      "main.go:12",
+      "main.go:13"
+    ],
+    "github.com/lib/pq": [
+      "main.go:7"
+    ]
+  }
+}
