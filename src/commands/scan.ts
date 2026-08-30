@@ -3,6 +3,7 @@ import { readPlatform } from "../readers/platform.js";
 import { writeState, CtxError } from "../store/state.js";
 import { assertLiveWork } from "../store/engine.js";
 import type { StateJson, Dependency } from "../store/schema.js";
+import { registryReachError, resetRegistryReachError } from "../adapters/shared/http.js";
 
 function semaphore(limit: number) {
   let active = 0;
@@ -48,12 +49,14 @@ function toImportMap(
 
 export async function runScan(repoRoot: string): Promise<void> {
   const absRoot = await assertLiveWork(repoRoot);
+  resetRegistryReachError();
 
   const adapter = await selectAdapter(absRoot);
   if (!adapter) {
     process.stderr.write(`[ctx error] ${NO_SUPPORTED_PROJECT}\n`);
     process.exit(2);
   }
+  process.stderr.write(`[ctx] scanner: ${adapter.id}\n`);
 
   let manifest;
   try {
@@ -95,10 +98,15 @@ export async function runScan(repoRoot: string): Promise<void> {
     }),
   );
 
-  for (const { dep, result } of fetchResults) {
-    if (!result.found) {
+  const missing = fetchResults.filter(({ result }) => !result.found);
+  if (missing.length > 0 && registryReachError) {
+    process.stderr.write(
+      `[ctx warn] Registry lookup skipped for ${missing.length} libraries (network/TLS). They are still in the scan from the build file.\n`,
+    );
+  } else {
+    for (const { dep } of missing) {
       process.stderr.write(
-        `[ctx warn] ${dep.groupId}:${dep.artifactId} not found in registry (E9)\n`,
+        `[ctx warn] ${dep.artifactId} — registry lookup failed (E9). Scan still recorded this library from the build file.\n`,
       );
     }
   }
@@ -134,6 +142,7 @@ Scan finished
   Database        : ${dbStatus === "not declared" ? "none listed in the project" : dbStatus}
   Used in code    : ${totalImports} import(s)
 ─────────────────────────────────────────────────────
-Next: ctx check --target ${state.language}=<version>
+Next: ctx capture   then   ctx show
+Facts live in .ctx/case.json — scan only stored the inventory.
 `);
 }

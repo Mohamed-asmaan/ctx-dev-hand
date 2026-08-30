@@ -65,10 +65,15 @@ describe("ctx off", () => {
     await expect(fs.access(path.join(dir, ".cursor", "skills", "ctx"))).rejects.toThrow();
     await expect(fs.access(path.join(dir, ".cursor", "hooks.json"))).rejects.toThrow();
     await expect(fs.access(path.join(dir, ".ctx", "hooks", "ctx-gate.cjs"))).rejects.toThrow();
+    await expect(fs.access(path.join(dir, "CLAUDE.md"))).rejects.toThrow();
     const mcp = JSON.parse(await fs.readFile(path.join(dir, ".cursor", "mcp.json"), "utf8")) as {
       mcpServers: Record<string, unknown>;
     };
     expect(mcp.mcpServers.ctx).toBeUndefined();
+    const rootMcp = JSON.parse(await fs.readFile(path.join(dir, ".mcp.json"), "utf8")) as {
+      mcpServers: Record<string, unknown>;
+    };
+    expect(rootMcp.mcpServers.ctx).toBeUndefined();
   });
 
   it("purge deletes state and cache but leaves the repo disabled", async () => {

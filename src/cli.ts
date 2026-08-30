@@ -219,6 +219,20 @@ program
   });
 
 program
+  .command("show")
+  .alias("facts")
+  .description("Print the case file: where developer decisions, locks, and edges live")
+  .argument("[path]", "Path to the project root", ".")
+  .action(async (projectPath) => {
+    try {
+      const { runShow } = await import("./commands/show.js");
+      await runShow(projectPath);
+    } catch (err) {
+      handle(err);
+    }
+  });
+
+program
   .command("brief")
   .description("Short local summary from the case file (handoff; saves tokens)")
   .argument("[path]", "Path to the project root", ".")

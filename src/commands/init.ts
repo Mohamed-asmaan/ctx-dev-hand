@@ -340,6 +340,8 @@ export async function runInit(
 
   await writeMcp(path.join(projectRoot, ".cursor", "mcp.json"), mcp);
   written.push(".cursor/mcp.json");
+  await writeMcp(path.join(projectRoot, ".mcp.json"), mcp);
+  written.push(".mcp.json");
 
   if (await rmIfExists(path.join(projectRoot, ".cursor", "skills", "ctx"))) {
     written.push(".cursor/skills/ctx (removed leftover skill)");
@@ -349,6 +351,11 @@ export async function runInit(
   if (strippedLegacy.length > 0) {
     written.push(...strippedLegacy.map((f) => `${f} (removed leftover)`));
   }
+
+  // After leftover cleanup: IBM Bob / Claude Code read CLAUDE.md at the repo root.
+  // Writing it before stripLegacy would delete it (same signatures as GATE.md).
+  await writeAlways(path.join(projectRoot, "CLAUDE.md"), CTX_GATE_MD);
+  written.push("CLAUDE.md");
 
   await writeConfig(projectRoot, { schemaVersion: 1, enabled: true });
   written.push(".ctx/config.json");

@@ -3,7 +3,9 @@
 
 export const CTX_ON_BODY = `ctx ON. This file means ctx is on. Do not skip. Do not guess versions.
 
-Upgrade/modernize/migrate/rewrite: ctx_project_state → ctx_capture if no case file → ctx_check_change. Show findings and upgradeOrder. Wait. Never apply a step whose kind is infrastructure. After edits: ctx_verify. Handoff: ctx_brief.
+IBM Bob: you talk; ctx holds the facts. Decisions live in .ctx/case.json. After a person confirms, call ctx_capture (locks/edges/decisions). Do not invent them. Read them with ctx show.
+
+Upgrade/modernize: ctx_project_state → ctx_capture if no case file → ctx_check_change. Show findings and upgradeOrder. Wait. Never apply a step whose kind is infrastructure. After edits: ctx_verify. Handoff: ctx_brief.
 `;
 
 export const CTX_GATE_MD = `# ctx

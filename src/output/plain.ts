@@ -151,6 +151,8 @@ export function formatPlainState(state: StateJson, caseFile?: CaseFile | null): 
     `Build file: ${state.manifestPath}`,
     `Database: ${state.platform.database?.engine ? `${state.platform.database.engine} ${state.platform.database.version}` : "none listed"}`,
     "",
+    "Developer decisions live in .ctx/case.json. IBM Bob: call ctx_show. Scan inventory is not a lock.",
+    "",
     "Libraries",
   ];
   for (const dep of state.dependencies) {

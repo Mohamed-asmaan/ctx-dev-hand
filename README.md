@@ -10,6 +10,8 @@ Built for the **IBM Dev Day hackathon**.
 
 Repository: [github.com/Mohamed-asmaan/ctx-dev-hand](https://github.com/Mohamed-asmaan/ctx-dev-hand)
 
+Demo prompts (legacy-era vs today’s engineer) and a 1-minute slide prompt: [docs/ibm-dev-day-submission.md](docs/ibm-dev-day-submission.md)
+
 ---
 
 ## Why this exists
@@ -153,6 +155,7 @@ Run via `node dist/cli.js <command>` from the engine clone (after `npm install` 
 | `capture` | Write `.ctx/case.json` |
 | `check --target <spec>` | Compatibility / decision report |
 | `verify` | Compare tree to case file |
+| `show` (`facts`) | Print the case file: path, locks, edges |
 | `brief` | Short handoff |
 
 ### Capture flags
@@ -189,6 +192,7 @@ Pass **`repoRoot`** on every call — the path of the open app, never the engine
 | --- | --- |
 | `ctx_project_state` | Inventory + case-file status |
 | `ctx_capture` | Record decisions, edges, rules, contracts, **locks** |
+| `ctx_show` | Print `.ctx/case.json`: locks, edges, where decisions live |
 | `ctx_check_change` | Proposed upgrade or technology decision |
 | `ctx_upgrade_plan` | Declared deps classified forced / optional / current |
 | `ctx_verify` | After edits: same / changed / untested |

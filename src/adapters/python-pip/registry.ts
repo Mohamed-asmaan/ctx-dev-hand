@@ -1,9 +1,9 @@
 import { cacheGet, cacheSet } from "../../store/cache.js";
 import type { CacheEntry } from "../../store/schema.js";
 import type { RegistryData } from "../types.js";
+import { fetchJson } from "../shared/http.js";
 
 const PYPI = "https://pypi.org/pypi/";
-const RETRY_DELAY_MS = 2000;
 
 interface PyPiInfo {
   version?: string;
@@ -18,31 +18,8 @@ interface PyPiResponse {
 
 async function fetchFromRegistry(name: string): Promise<CacheEntry | null> {
   const url = `${PYPI}${encodeURIComponent(name)}/json`;
-  let res: Response;
-  try {
-    res = await fetch(url);
-  } catch {
-    return null;
-  }
-
-  if (res.status === 429) {
-    await new Promise((r) => setTimeout(r, RETRY_DELAY_MS));
-    try {
-      res = await fetch(url);
-    } catch {
-      return null;
-    }
-    if (res.status === 429) return null;
-  }
-
-  if (!res.ok) return null;
-
-  let body: PyPiResponse;
-  try {
-    body = (await res.json()) as PyPiResponse;
-  } catch {
-    return null;
-  }
+  const body = await fetchJson<PyPiResponse>(url);
+  if (!body) return null;
 
   const latestVersion = body.info?.version;
   const versions = Object.keys(body.releases ?? {});

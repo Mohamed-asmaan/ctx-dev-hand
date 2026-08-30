@@ -40,7 +40,7 @@ export async function runCapture(
       by: opts.by,
       replace: opts.replace,
     });
-    process.stdout.write(`${formatCaptureSummary(caseFile)}\n`);
+    process.stdout.write(`${formatCaptureSummary(caseFile, path.join(absRoot, ".ctx", "case.json"))}\n`);
   } catch (err) {
     if (err instanceof CtxError && err.code === "E16") {
       process.stderr.write(`[ctx error] ${err.message}\n`);

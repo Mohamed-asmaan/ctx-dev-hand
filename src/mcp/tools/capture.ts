@@ -44,7 +44,7 @@ export function registerCaptureTool(server: McpServer): void {
           replace: input.replace,
         });
         return {
-          content: [{ type: "text" as const, text: formatCaptureSummary(caseFile) }],
+          content: [{ type: "text" as const, text: formatCaptureSummary(caseFile, `${root.replace(/\\/g, "/")}/.ctx/case.json`) }],
         };
       } catch (err) {
         const mcp = asMcpError(err);

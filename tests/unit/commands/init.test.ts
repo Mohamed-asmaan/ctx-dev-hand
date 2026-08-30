@@ -45,7 +45,7 @@ describe("ctx init", () => {
     const gate = await fs.readFile(path.join(dir, ".ctx", "GATE.md"), "utf8");
     expect(gate).toContain("ctx ON");
     expect(gate).toContain("Never apply a step whose kind is infrastructure");
-    expect(gate.length).toBeLessThan(800);
+    expect(gate.length).toBeLessThan(1200);
     const rule = await fs.readFile(path.join(dir, ".cursor", "rules", "ctx-upgrade-gate.mdc"), "utf8");
     expect(rule).toContain("alwaysApply: true");
     expect(rule).not.toMatch(/config\.json/);
@@ -60,8 +60,9 @@ describe("ctx init", () => {
     expect(mcp.mcpServers.ctx.args[0]).toBe(env.mcpCli.replace(/\\/g, "/"));
     await fs.access(mcp.mcpServers.ctx.args[0]);
     await fs.access(path.join(dir, ".ctx", "hooks", "ctx-gate.cjs"));
+    await fs.access(path.join(dir, "CLAUDE.md"));
+    await fs.access(path.join(dir, ".mcp.json"));
     await expect(fs.access(path.join(dir, "AGENTS.md"))).rejects.toThrow();
-    await expect(fs.access(path.join(dir, ".mcp.json"))).rejects.toThrow();
     expect(report).toMatch(/Node\.js/);
     expect(report).toMatch(/Need:|Ready on this machine/);
 

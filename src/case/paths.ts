@@ -56,7 +56,9 @@ export async function findTestFiles(repoRoot: string): Promise<string[]> {
     onlyFiles: true,
     unique: true,
   });
-  files = files.map(posixRel);
+  files = files.map(posixRel).filter((f) =>
+    /\.(py|js|mjs|cjs|ts|tsx|jsx|java|go|rb|php|cs|rs)$/i.test(f),
+  );
   if (files.length > TEST_CAP) files = files.slice(0, TEST_CAP);
   files.sort();
   return files;

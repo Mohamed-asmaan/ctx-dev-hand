@@ -13,6 +13,7 @@ import { registerVerifyStepTool } from "./tools/verify-step.js";
 import { registerCaptureTool } from "./tools/capture.js";
 import { registerVerifyBaselineTool } from "./tools/verify-baseline.js";
 import { registerBriefTool } from "./tools/brief.js";
+import { registerShowTool } from "./tools/show.js";
 
 export async function startMcpServer(): Promise<void> {
   const server = new McpServer({
@@ -27,6 +28,7 @@ export async function startMcpServer(): Promise<void> {
   registerCaptureTool(server);
   registerVerifyBaselineTool(server);
   registerBriefTool(server);
+  registerShowTool(server);
 
   const transport = new StdioServerTransport();
   await server.connect(transport);

@@ -123,6 +123,7 @@ describe("Contract 3 — grounding instruction in all MCP tool descriptions", ()
       "src/mcp/tools/capture.ts",
       "src/mcp/tools/verify-baseline.ts",
       "src/mcp/tools/brief.ts",
+      "src/mcp/tools/show.ts",
     ]) {
       const content = await fs.readFile(file, "utf8");
       expect(
@@ -136,6 +137,7 @@ describe("Contract 3 — grounding instruction in all MCP tool descriptions", ()
     const content = await fs.readFile("src/mcp/grounding.ts", "utf8");
     expect(content).toContain("IBM Bob");
     expect(content).toContain("ctx_capture");
+    expect(content).toContain("ctx_show");
     expect(content).toContain("ctx_verify");
     expect(content).toContain("ctx_brief");
   });

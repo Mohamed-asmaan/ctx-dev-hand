@@ -144,15 +144,31 @@ export function formatBrief(caseFile: CaseFile): string {
   return lines.join("\n");
 }
 
-export function formatCaptureSummary(caseFile: CaseFile): string {
-  const locked = caseFile.decisions.filter((d) => d.locked).length;
-  return [
-    "Case file written to .ctx/case.json",
-    `Language: ${caseFile.language} ${caseFile.declaredRuntimeVersion ?? "(not found)"}`,
-    `Decisions: ${caseFile.decisions.length}  Locked: ${locked}  Edges/rules/contracts: ${caseFile.invariants.length}`,
+export function formatCaptureSummary(caseFile: CaseFile, filePath?: string): string {
+  const locked = caseFile.decisions.filter((d) => d.locked);
+  const human = caseFile.decisions.filter((d) => d.confirmedBy !== "scan");
+  const lines = [
+    "Case file written.",
+    `File: ${filePath ?? ".ctx/case.json"}`,
+    `Language: ${caseFile.language} ${caseFile.declaredRuntimeVersion ?? "(not found)"} (${caseFile.buildTool})`,
+    `Scan facts: ${caseFile.decisions.filter((d) => d.confirmedBy === "scan").length}  Developer facts: ${human.length}  Locked: ${locked.length}  Edges/rules/contracts: ${caseFile.invariants.length}`,
     `Tracked files: ${caseFile.baseline.files.length}  Tests: ${caseFile.baseline.tests.length}`,
     "",
-    "Locked facts block a later modernize check. After edits: ctx verify",
-    "Handoff: ctx brief",
-  ].join("\n");
+  ];
+
+  if (human.length === 0 && caseFile.invariants.length === 0) {
+    lines.push("No developer decisions yet. Scan only stored the inventory (libraries).");
+    lines.push("A person must confirm facts. Then record them:");
+    lines.push("  ctx capture --lock \"...\" --edge \"...\" --decision \"...\"");
+    lines.push("IBM Bob: after the person speaks, call ctx_capture with locks/edges/decisions. Do not invent them.");
+    lines.push("Read the file: ctx show");
+  } else {
+    lines.push("Recorded developer facts:");
+    for (const d of locked) lines.push(`- (locked) ${d.fact}`);
+    for (const d of human.filter((x) => !x.locked)) lines.push(`- (decision) ${d.fact}`);
+    for (const inv of caseFile.invariants) lines.push(`- (${inv.kind}) ${inv.description}`);
+    lines.push("");
+    lines.push("Read them: ctx show    After edits: ctx verify    Handoff: ctx brief");
+  }
+  return lines.join("\n");
 }

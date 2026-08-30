@@ -19,6 +19,7 @@ export const EDITOR_WIRING = [
   path.join(".ctx", "GATE.md"),
   path.join(".ctx", "hooks", "ctx-gate.cjs"),
   path.join(".cursor", "hooks", "ctx-gate.cjs"),
+  "CLAUDE.md",
 ];
 
 export const EDITOR_WIRING_DIRS = [path.join(".cursor", "skills", "ctx")];
