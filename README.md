@@ -10,7 +10,7 @@ Built for the **IBM Dev Day hackathon**.
 
 Repository: [github.com/Mohamed-asmaan/ctx-dev-hand](https://github.com/Mohamed-asmaan/ctx-dev-hand)
 
-Demo prompts (legacy-era vs today’s engineer) and a 1-minute slide prompt: [docs/ibm-dev-day-submission.md](docs/ibm-dev-day-submission.md)
+Complete commands and operator manual: [docs/GUIDE.md](docs/GUIDE.md)
 
 This repo follows the [IBM Hackathon GitHub Project Template](https://github.com/watsonxhackathon/ibm-hackathon-template): `.gitignore` security patterns, `.bobignore`, `.env.example`, and [SECURITY.md](SECURITY.md).
 

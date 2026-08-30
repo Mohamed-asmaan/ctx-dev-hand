@@ -128,3 +128,8 @@ Thumbs.db
 # Sample fixtures: .ctx/config.json is an opt-in flag { enabled: true }, not credentials
 !samples/**/.ctx/
 !samples/**/.ctx/config.json
+
+# Local demo prompts — do not commit
+docs/ibm-dev-day-submission.md
+docs/demo-prompts.md
+docs/*.local.md
