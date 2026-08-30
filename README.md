@@ -12,6 +12,30 @@ Repository: [github.com/Mohamed-asmaan/ctx-dev-hand](https://github.com/Mohamed-
 
 Demo prompts (legacy-era vs today’s engineer) and a 1-minute slide prompt: [docs/ibm-dev-day-submission.md](docs/ibm-dev-day-submission.md)
 
+This repo follows the [IBM Hackathon GitHub Project Template](https://github.com/watsonxhackathon/ibm-hackathon-template): `.gitignore` security patterns, `.bobignore`, `.env.example`, and [SECURITY.md](SECURITY.md).
+
+---
+
+## IBM Hackathon security
+
+**ctx does not need IBM Cloud credentials for the demo.** The engine is local. Do not paste API keys into Bob, Cursor, or git.
+
+```bash
+cp .env.example .env
+# leave placeholders unless you add IBM Cloud calls yourself
+git check-ignore -v .env
+```
+
+Before every commit:
+
+- Reviewed `git diff` for sensitive data
+- No hardcoded API keys or passwords
+- `.env` is **not** staged
+- No files named credential / secret / password
+- Credentials live in environment variables only
+
+If you add IBM Cloud or watsonx later, put keys in `.env` and read them with `process.env.IBM_CLOUD_API_KEY`. Never commit `.env`. Never remove patterns from `.gitignore` or `.bobignore`.
+
 ---
 
 ## Why this exists
